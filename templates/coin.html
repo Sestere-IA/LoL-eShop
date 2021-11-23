@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item LoL Shop</title>
+    <link rel ="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a methods="POST" href="{{ url_for('home') }}">Shop</a></li>
+            <li><a methods="POST" href="{{ url_for('get_pseudo') }}">{{connection}}</a></li>
+            <li><a href="#">Panier</a></li>
+            <li><a href="/coin">Pièces d'or</a></li>
+        </ul>
+    </nav>
+<h1> Si vous voulez des piece d'or taper votre code secret :</h1>
+<br/><br>
+
+<form method="POST"
+    action="/coin">
+    <input type="text" name="coin">
+    <input type="submit" value="Valider mon code secret">
+    <br/><br><br/><br>
+    </form>
+</body>
+</html>

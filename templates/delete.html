@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+     <title>List</title>
+ </head>
+ <body>
+ <h3>Students  Informations</h3>
+ <table border=5>
+ <thead>
+ <td>ID</td>
+ <td>Name</td>
+ <td>Surname</td>
+  <td>Level</td>
+  <td>Mail</td>
+  <td>Adresse</td>
+  </thead>
+ {% for row in rows %}
+ <tr>
+ <td>{{row["etudiant_ID"]}}</td>
+ <td>{{row["etudiant_name"]}}</td>
+ <td>{{row["etudiant_surname"]}}</td>
+ <td>{{row["etudiant_level"]}}</td>
+ <td>{{row["etudiant_mail"]}}</td>
+ <td>{{row["etudiant_adresse"]}}</td>
+ </tr>
+ {% endfor %}
+ </table>
+ <br><br>
+
+<h1> Supprimer un étudiant :</h1>
+
+ <form method="POST" action="/delete">
+                          <label> ID : </label><input type="text" name="ID">
+   <input type="submit" value="Supprimer">
+  </form>
+  <br><br>
+ <a href="/home">Retourner à la page home</a>
+ <h3> {{pseudo}} </h3>
+ </body>
+ </html>

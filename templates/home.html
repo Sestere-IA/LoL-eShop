@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item LoL Shop</title>
+    <link rel ="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='main.css') }}">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a methods="POST" href="{{ url_for('home') }}">Shop</a></li>
+            <li><a methods="POST" href="{{ url_for('get_pseudo') }}">{{connection}}</a></li>
+            <li><a href="#">Panier</a></li>
+            <li><a href="/coin">Pièces d'or</a></li>
+        </ul>
+    </nav>
+
+<!-- {% for item in results %}
+<h2>ID: {{ item.id }} Name: {{ item.name }} Surname: {{ item.surname }}</h2>
+{% endfor %}-->
+
+<!--<h1>To add a new student , Please fill out the form</h1> -->
+
+<a href="/add">{{href1_message}}</a>
+
+<br/><br>
+
+<a href="/display">{{href2_message}}</a>
+
+<br/><br>
+
+<a href="/delete">{{href3_message}}</a>
+<!--<p><a href="{{ url_for('get_pseudo') }}"> {{identifier_vous}} </a></p>-->
+<h3> {{pseudo}} </h3>
+</body>
+</html>

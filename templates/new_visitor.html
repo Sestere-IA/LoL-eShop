@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Créer un compte</title>
+</head>
+<body>
+<form method="POST"
+    action="/home">
+    <h3> Identifiant : </h3>
+    <input type="text" name="identifiant">
+    <br/><br>
+    <h3> Mot de passe : </h3>
+    <input type="text" name="mot_de_passe">
+    <br/><br>
+    <h3> Confirmer mot de passe : </h3>
+    <input type="text" name="mot_de_passe_confirme">
+    <input type="submit" value="Creer un compte">
+    <br/><br><br/><br>
+    </form>
+
+<form method="GET"
+    action="/pseudo">
+    <h2> Deja client ?</h2>
+    <br/><br>
+    <input type="submit" value="Se connecter">
+</form>
+</body>
+</html>

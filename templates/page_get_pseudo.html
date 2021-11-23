@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connection</title>
+    <link rel ="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a methods="POST" href="{{ url_for('home') }}">Shop</a></li>
+            <li><a methods="POST" href="{{ url_for('get_pseudo') }}">{{connection}}</a></li>
+            <li><a href="#">Panier</a></li>
+            <li><a href="/coin">Pièces d'or</a></li>
+        </ul>
+    </nav>
+    <h1> {{msg_get_speudo}}</h1>
+    <br/><br>
+
+
+<form method="POST"
+    action="/home">
+    <h3> Identifiant : </h3>
+    <input type="text" name="identifiant">
+    <br/><br>
+    <h3> Mot de passe : </h3>
+    <input type="text" name="mot_de_passe">
+    <input type="submit" value="Se connecter">
+    <br/><br><br/><br>
+    </form>
+
+<form method="POST"
+    action="/newpseudo">
+    <h2> Nouveau Client ?</h2>
+    <br/><br>
+    <input type="submit" value="Créer un compte">
+</form>
+
+
+</body>
+</html>
