@@ -20,8 +20,21 @@ class FlaskUse:
         def index():
             return redirect(url_for('home'))
 
+        @app.route('/panier')
+        def panier():
+            connection = "Connection"
+            if request.method == "GET":
+                if 'pseudo' in session:
+                    pseudo = session['pseudo']
+                    connection = pseudo
+
+            return render_template("panier.html", connection=connection)
+
         @app.route('/home', methods=['GET', 'POST'])
         def home():
+            db = gestion_bdd.get_db()
+            cur = db.execute('select * from item_table')
+            results = cur.fetchall()
             if request.method == "GET":
                 if 'pseudo' in session:
                     identifier_vous = ""
@@ -45,7 +58,7 @@ class FlaskUse:
                                        pseudo=pseudo, href1_message=href1_message,
                                        connection=connection,
                                        href2_message=href2_message,
-                                       href3_message=href3_message)
+                                       href3_message=href3_message, results=results)
             else:
                 pseudo = request.form['name']
                 session['pseudo'] = pseudo
@@ -72,7 +85,7 @@ class FlaskUse:
                                        pseudo=pseudo, href1_message=href1_message,
                                        href2_message=href2_message,
                                        connection=connection,
-                                       href3_message=href3_message)
+                                       href3_message=href3_message, results=results)
 
         @app.route('/pseudo', methods=['GET', 'POST'])
         def get_pseudo():
@@ -92,13 +105,6 @@ class FlaskUse:
             else:
                 pass
 
-        @app.route('/newpseudo', methods=['GET', 'POST'])
-        def get_new_pseudo():
-            if request.method == "POST":
-                return render_template("new_visitor.html")
-            else:
-                pass
-
         @app.route('/coin')
         def coin():
             if "pseudo" in session:
@@ -113,10 +119,41 @@ class FlaskUse:
             else:
                 pseudo = ""
             db = gestion_bdd.get_db()
-            cur = db.execute('select * from etudiant_table')
+            cur = db.execute('select * from item_table')
             results = cur.fetchall()
 
             return render_template("view.html", rows=results, pseudo=pseudo)
+
+        @app.route('/newpseudo', methods=['GET', 'POST'])
+        def get_new_pseudo():
+            if request.method == "GET":
+                error_message = ""
+                return render_template("new_visitor.html", error_message=error_message)
+            else:
+                identifiant = request.form['identifiant']
+                password = request.form['mot_de_passe']
+                password_repeat = request.form['mot_de_passe_confirme']
+
+                for identifiant_in_bdd in gestion_bdd.check_identifiant_exist():
+
+                    if identifiant_in_bdd[0] == identifiant:
+
+                        error_message="indentifiant deja dans la bdd"
+                        return render_template("new_visitor.html", error_message=error_message)
+                    else:
+                        print("identificiant pas dans la base")
+
+                if password == password_repeat:
+                    db = gestion_bdd.get_db()
+                    db.execute(
+                        'insert into client_table (client_identifiant, client_password) values (?, ?)'
+                        , [identifiant, password])
+                    db.commit()
+
+                    return redirect(url_for('home'))
+                else:
+                    error_message = "le mot de passe n'est pas le meme"
+                    return render_template("new_visitor.html", error_message=error_message)
 
         @app.route('/add', methods=['POST', 'GET'])
         def add():

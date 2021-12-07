@@ -4,27 +4,28 @@
      <title>List</title>  
  </head>  
  <body>  
- <h3>Students  Informations</h3>
- <table border=5>  
- <thead>  
- <td>ID</td>  
- <td>Name</td>  
- <td>Surname</td>
-  <td>Level</td>
-  <td>Mail</td>
-  <td>Adresse</td>
-  </thead>  
+ <h3>Item Lol Info</h3>
+
+
+
  {% for row in rows %}  
- <tr>  
- <td>{{row["etudiant_ID"]}}</td>
- <td>{{row["etudiant_name"]}}</td>
- <td>{{row["etudiant_surname"]}}</td>
- <td>{{row["etudiant_level"]}}</td>
- <td>{{row["etudiant_mail"]}}</td>
- <td>{{row["etudiant_adresse"]}}</td>
+ <tr>
+  <img src={{row["item_img_path"]}}>
+ <td>{{row["item_img_path"]}}</td>
+ <td>{{row["item_id"]}}</td>
+ <td>{{row["item_name"]}}</td>
+ <td>{{row["item_explain"]}}</td>
+ <td>{{row["item_buy_price"]}}</td>
+ <td>{{row["item_sell_price"]}}</td>
+ <td>{{row["item_tag"]}}</td>
+
+   <br><br>
  </tr>  
- {% endfor %}   
- </table>  
+ {% endfor %}
+
+
+ <img src=https://static.wikia.nocookie.net/leagueoflegends/images/d/df/Faerie_Charm_item.png/revision/latest/smart/width/40/height/30?cb=20201118204200>
+
  <br><br>
 
 

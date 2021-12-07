@@ -12,7 +12,7 @@
         <ul>
             <li><a methods="POST" href="{{ url_for('home') }}">Shop</a></li>
             <li><a methods="POST" href="{{ url_for('get_pseudo') }}">{{connection}}</a></li>
-            <li><a href="#">Panier</a></li>
+            <li><a methods="GET" href="{{ url_for('panier') }}">Panier</a></li>
             <li><a href="/coin">Pièces d'or</a></li>
         </ul>
     </nav>
@@ -34,5 +34,24 @@
 <a href="/delete">{{href3_message}}</a>
 <!--<p><a href="{{ url_for('get_pseudo') }}"> {{identifier_vous}} </a></p>-->
 <h3> {{pseudo}} </h3>
+
+<div class='div_table'>
+ {% for row in results %}
+ <tr>
+  <img src={{row["item_img_path"]}}>
+     <td> Name : </td>
+ <td>{{row["item_name"]}}</td>
+     <td> Describe : </td>
+ <td>{{row["item_explain"]}}</td>
+     <td> Price : </td>
+ <td>{{row["item_buy_price"]}}</td>
+<td> Tag : </td>
+ <td>{{row["item_tag"]}}</td>
+     <input type="submit" value="Ajouter au Panier">
+
+    <br><br>
+{% endfor %}
+</div>
+
 </body>
 </html>

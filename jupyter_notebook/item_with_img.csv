@@ -1,0 +1,14 @@
+item_id,name,explain,buy_price,sell_price,tag,path
+1004,Faerie Charm,Slightly increases Mana Regen,125,88,ManaRegen,https://static.wikia.nocookie.net/leagueoflegends/images/d/df/Faerie_Charm_item.png/revision/latest/smart/width/40/height/30?cb=20201118204200
+1038,B. F. Sword,Greatly increases Attack Damage,1300,910,Damage,https://static.wikia.nocookie.net/leagueoflegends/images/a/ab/B._F._Sword_item.png/revision/latest/smart/width/40/height/30?cb=20201029192225
+1042,Dagger,Slightly increases Attack Speed,300,210,AttackSpeed,https://static.wikia.nocookie.net/leagueoflegends/images/7/7e/Dagger_item.png/revision/latest/smart/width/40/height/30?cb=20201029194738
+3001,Abyssal Mask,Nearby enemies take more magic damage,1180,2100,Health,https://static.wikia.nocookie.net/leagueoflegends/images/8/8f/Abyssal_Mask_item.png/revision/latest/smart/width/40/height/30?cb=20201118202145
+3004,Manamune,Increases Attack Damage based on maximum Mana,675,1680,Damage,https://static.wikia.nocookie.net/leagueoflegends/images/6/60/Manamune_item.png/revision/latest/smart/width/40/height/30?cb=20201027211225
+3035,Last Whisper,Overcomes enemies with high Armor,750,1015,ArmorPenetration,https://static.wikia.nocookie.net/leagueoflegends/images/b/ba/Last_Whisper_item.png/revision/latest/smart/width/40/height/30?cb=20201118205208
+3067,Kindlegem,Increases Health and Cooldown Reduction,400,560,CooldownReduction,https://static.wikia.nocookie.net/leagueoflegends/images/b/b8/Kindlegem_item.png/revision/latest/smart/width/40/height/30?cb=20201104235408
+3089,Rabadon's Deathcap,Massively increases Ability Power,1100,2520,SpellDamage,https://static.wikia.nocookie.net/leagueoflegends/images/c/c5/Rabadon%27s_Deathcap_item.png/revision/latest/smart/width/40/height/30?cb=20201118205704
+3115,Nashor's Tooth,"Increases Attack Speed, Ability Power, and Cooldown Reduction",1000,2100,AttackSpeed,https://static.wikia.nocookie.net/leagueoflegends/images/1/16/Nashor%27s_Tooth_item.png/revision/latest/smart/width/40/height/30?cb=20201029213416
+3140,Quicksilver Sash,Activate to remove all crowd control debuffs,850,910,Active,https://static.wikia.nocookie.net/leagueoflegends/images/f/f9/Quicksilver_Sash_item.png/revision/latest/smart/width/40/height/30?cb=20201027213538
+3400,'Your Cut',,0,0,Consumable,https://static.wikia.nocookie.net/leagueoflegends/images/0/01/%27Your_Cut%27_item.png/revision/latest/smart/width/40/height/30?cb=20201102202243
+3857,Pauldrons of Whiterock,,400,160,Health,https://static.wikia.nocookie.net/leagueoflegends/images/7/7c/Pauldrons_of_Whiterock_item.png/revision/latest/smart/width/40/height/30?cb=20201027213142
+3916,Oblivion Orb,Increases magic damage,765,1120,Health,https://static.wikia.nocookie.net/leagueoflegends/images/8/86/Oblivion_Orb_item.png/revision/latest/smart/width/40/height/30?cb=20201029193319

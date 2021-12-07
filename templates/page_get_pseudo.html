@@ -11,7 +11,7 @@
         <ul>
             <li><a methods="POST" href="{{ url_for('home') }}">Shop</a></li>
             <li><a methods="POST" href="{{ url_for('get_pseudo') }}">{{connection}}</a></li>
-            <li><a href="#">Panier</a></li>
+            <li><a methods="GET" href="{{ url_for('panier') }}">Panier</a></li>
             <li><a href="/coin">Pièces d'or</a></li>
         </ul>
     </nav>
@@ -30,7 +30,7 @@
     <br/><br><br/><br>
     </form>
 
-<form method="POST"
+<form method="GET"
     action="/newpseudo">
     <h2> Nouveau Client ?</h2>
     <br/><br>
