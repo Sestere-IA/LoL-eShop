@@ -12,8 +12,8 @@
         <ul>
             <li><a methods="POST" href="{{ url_for('home') }}">Shop</a></li>
             <li><a methods="POST" href="{{ url_for('get_pseudo') }}">{{connection}}</a></li>
-            <li><a methods="GET" href="{{ url_for('panier') }}">Panier</a></li>
-            <li><a href="/coin">Pièces d'or</a></li>
+            <li><a methods="GET" href="{{ url_for('panier') }}">Panier ({{panier_len}})</a></li>
+            <li><a methods="GET" href="/coin">Pièce d'or{{gold}}</a></li>
         </ul>
     </nav>
 
@@ -23,17 +23,8 @@
 
 <!--<h1>To add a new student , Please fill out the form</h1> -->
 
-<a href="/add">{{href1_message}}</a>
 
-<br/><br>
 
-<a href="/display">{{href2_message}}</a>
-
-<br/><br>
-
-<a href="/delete">{{href3_message}}</a>
-<!--<p><a href="{{ url_for('get_pseudo') }}"> {{identifier_vous}} </a></p>-->
-<h3> {{pseudo}} </h3>
 
 <div class='div_table'>
  {% for row in results %}
@@ -47,11 +38,28 @@
  <td>{{row["item_buy_price"]}}</td>
 <td> Tag : </td>
  <td>{{row["item_tag"]}}</td>
+     <form method="POST" action="/panier">
      <input type="submit" value="Ajouter au Panier">
+         <input type="hidden" name="code" value={{row["item_ID"]}}>
+
+         </form>
+     <form method="POST" action=""><input type="submit" value={{admin_suppr_item}}></form>
+
 
     <br><br>
 {% endfor %}
 </div>
+
+<a href="/add">{{href1_message}}</a>
+
+<br/><br>
+
+<a href="/display">{{href2_message}}</a>
+
+<br/><br>
+
+<a href="/delete">{{href3_message}}</a>
+<!--<p><a href="{{ url_for('get_pseudo') }}"> {{identifier_vous}} </a></p>-->
 
 </body>
 </html>

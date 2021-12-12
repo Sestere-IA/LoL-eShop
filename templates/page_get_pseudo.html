@@ -11,16 +11,17 @@
         <ul>
             <li><a methods="POST" href="{{ url_for('home') }}">Shop</a></li>
             <li><a methods="POST" href="{{ url_for('get_pseudo') }}">{{connection}}</a></li>
-            <li><a methods="GET" href="{{ url_for('panier') }}">Panier</a></li>
-            <li><a href="/coin">Pièces d'or</a></li>
+            <li><a methods="GET" href="{{ url_for('panier') }}">Panier ({{panier_len}})</a></li>
+            <li><a methods="GET" href="/coin">Pièce d'or{{gold}}</a></li>
         </ul>
     </nav>
+
     <h1> {{msg_get_speudo}}</h1>
     <br/><br>
 
 
 <form method="POST"
-    action="/home">
+    action="/pseudo">
     <h3> Identifiant : </h3>
     <input type="text" name="identifiant">
     <br/><br>
@@ -37,6 +38,7 @@
     <input type="submit" value="Créer un compte">
 </form>
 
+<h4>{{ error_message }}</h4>
 
 </body>
 </html>

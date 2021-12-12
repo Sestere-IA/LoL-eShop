@@ -1,4 +1,4 @@
-from flask import Flask, request, url_for, redirect, render_template, g, session
+from flask import Flask, request, url_for, redirect, render_template, session
 import gestion_bdd
 
 
@@ -7,110 +7,145 @@ class FlaskUse:
     def __init__(self):
         app = Flask(__name__)
         app.config['SECRET_KEY'] = 'Myscretkey'
-        app.config['PERMANENT_SESSION_LIFETIME'] = 10
+        app.config['PERMANENT_SESSION_LIFETIME'] = 3600
 
-        # teardown_X() closes or otherwise deallocates the resource if it exists.
-        # It is registered as a teardown_appcontext() handler.
-        @app.teardown_appcontext
-        def close_db(error):
-            if hasattr(g, 'sqlite_db'):
-                g.sqlite_db.close()
+        def all_info_for_navi_bar():
+            try:
+                panier_len = session['panier_len']
+                in_panier = session['in_panier_id']
+                gold = " : " + str(session['gold'])
+                return panier_len, in_panier, gold
+            except:
+                # no session
+                session['panier_len'] = 0
+                session['in_panier_id'] = []
+                session["gold"] = 0
+                panier_len = session['panier_len']
+                in_panier = session['in_panier_id']
+                gold = " : " + str(session['gold'])
+                return panier_len, in_panier, gold
 
         @app.route('/')
         def index():
             return redirect(url_for('home'))
 
-        @app.route('/panier')
+        @app.route('/clear_panier')
+        def clear_panier():
+            session['panier_len'] = 0
+            session['in_panier_id'] = []
+            return redirect(url_for('panier'))
+
+        @app.route('/panier', methods=['GET', 'POST'])
         def panier():
+            panier_len, in_panier, gold = all_info_for_navi_bar()
             connection = "Connection"
             if request.method == "GET":
                 if 'pseudo' in session:
                     pseudo = session['pseudo']
                     connection = pseudo
+            else:
+                _id = request.form['code']
+                id_item = gestion_bdd.get_id_of_item_to_panier(_id)
+                session["in_panier_id"].append(id_item)
+                session["panier_len"] += 1
+                return redirect(url_for('home'))
 
-            return render_template("panier.html", connection=connection)
+            return render_template("panier.html",
+                                   connection=connection,
+                                   panier_len=panier_len,
+                                   item_id_in_cart=in_panier,
+                                   gold=gold)
 
         @app.route('/home', methods=['GET', 'POST'])
         def home():
+            panier_len, in_panier, gold = all_info_for_navi_bar()
             db = gestion_bdd.get_db()
             cur = db.execute('select * from item_table')
             results = cur.fetchall()
             if request.method == "GET":
                 if 'pseudo' in session:
-                    identifier_vous = ""
                     pseudo = session['pseudo']
-                    href1_message = "Ajouter un nouvel étudiant"
-                    href2_message = "Afficher la liste des étudiants"
-                    href3_message = "Supprimer un étudiant"
                     connection = pseudo
+                    if pseudo == "admin":
+                        admin_suppresion_item = "Supprimer de la liste de vendre"
+                        href1_message = "Ajouter un nouvel itemt"
+                    else:
+                        admin_suppresion_item = ""
+                        href1_message = ""
 
+                    identifier_vous = ""
                 else:
-
                     identifier_vous = "Identifiez-vous"
                     pseudo = ""
                     href1_message = ""
-                    href2_message = ""
-                    href3_message = ""
                     connection = "Connection"
-
+                    admin_suppresion_item = ""
                 return render_template("home.html",
                                        identifier_vous=identifier_vous,
                                        pseudo=pseudo, href1_message=href1_message,
-                                       connection=connection,
-                                       href2_message=href2_message,
-                                       href3_message=href3_message, results=results)
-            else:
-                pseudo = request.form['name']
-                session['pseudo'] = pseudo
-                if 'pseudo' in session:
-                    message_visit = "C'est un plaisir de se revoir, {pseudo} !" \
-                        .format(pseudo=session['pseudo'])
-                    identifier_vous = "Déconnectez-vous"
-                    href1_message = "Ajouter un nouvel étudiant"
-                    href2_message = "Afficher la liste des étudiants"
-                    href3_message = "Supprimer un étudiant"
-                    connection = pseudo
-
-                else:
-                    message_visit = "Bonjour, c'est votre première visite ?"
-                    identifier_vous = "Identifiez-vous"
-                    href1_message = ""
-                    href2_message = ""
-                    href3_message = ""
-                    connection = "Connection"
-
-                return render_template("home.html",
-                                       msg=message_visit,
-                                       identifier_vous=identifier_vous,
-                                       pseudo=pseudo, href1_message=href1_message,
-                                       href2_message=href2_message,
-                                       connection=connection,
-                                       href3_message=href3_message, results=results)
+                                       connection=connection, results=results, admin_suppr_item=admin_suppresion_item,
+                                       gold=gold, panier_len=panier_len)
 
         @app.route('/pseudo', methods=['GET', 'POST'])
         def get_pseudo():
+            panier_len, in_panier, gold = all_info_for_navi_bar()
             if request.method == "GET":
+                print("here2")
                 if "pseudo" in session:
-                    message_visit = "Bonjour, c'est votre première visite ?"
-                    identifier_vous = "Identifiez-vous"
-                    pseudo = ""
-                    session.pop('pseudo', None)
-                    return render_template("home.html", msg=message_visit,
-                                           identifier_vous=identifier_vous,
-                                           pseudo=pseudo, connection="Connection")
+                    pseudo = session["pseudo"]
+                    connection = pseudo
+                    return render_template("setting_acoount.html", connection=connection, gold=gold,
+                                           panier_len=panier_len)
 
                 else:
                     return render_template("page_get_pseudo.html",
-                                           msg_get_speudo="Connection", connection="Connection")
+                                           msg_get_speudo="Connection", connection="Connection",
+                                           panier_len=panier_len, gold=gold)
             else:
-                pass
+                identifiant = request.form['identifiant']
+                password = request.form['mot_de_passe']
+                for identifiant_and_password_in_bdd in gestion_bdd.check_identififiant_and_password_and_get_gold():
+                    if identifiant == identifiant_and_password_in_bdd[0] \
+                            and password == identifiant_and_password_in_bdd[1]:
+                        print("Client dans la bdd autorasation de connection")
+                        session['pseudo'] = identifiant
+                        gold_in_the_pocket = identifiant_and_password_in_bdd[2]
+                        session['gold'] = gold_in_the_pocket
+                        return redirect(url_for('home'))
+                    else:
+                        pass
+                print('Client pas dans la bdd, pas passer')
+                return render_template("page_get_pseudo.html",
+                                       msg_get_speudo="Connection",
+                                       connection="Connection",
+                                       error_message="Information incorrect",
+                                       gold=gold)
 
-        @app.route('/coin')
+        @app.route('/coin', methods=['POST', 'GET'])
         def coin():
-            if "pseudo" in session:
-                return render_template("coin.html", connection="Connection")
+            panier_len, in_panier, gold = all_info_for_navi_bar()
+            if request.method == "GET":
+                if "pseudo" in session:
+                    pseudo = session['pseudo']
+                    connection = pseudo
+                    return render_template("coin.html", gold=gold, connection=connection,
+                                           panier_len=panier_len)
+                else:
+                    return render_template("connect_before_get_coin.html")
             else:
-                return render_template("connect_before_get_coin.html")
+                pseudo = session['pseudo']
+                connection = pseudo
+                secret_code = request.form['coin']
+                validation_code_message = "Code incorrect, tu n'a pas le droit d'avoir d'argent en plus"
+                if secret_code == "monsupercodesecret":
+                    print("code valider")
+                    validation_code_message = "BRAVO, c'est le bon code ! +10k in the bank"
+                    gestion_bdd.add_gold_in_the_pocket(pseudo)
+                    session['gold'] += 10000
+                return render_template("coin.html", gold=gold,
+                                       connection=connection,
+                                       validation_code_message=validation_code_message,
+                                       panier_len=panier_len)
 
         @app.route('/display', methods=['POST', 'GET'])
         def viewresults():
@@ -119,7 +154,7 @@ class FlaskUse:
             else:
                 pseudo = ""
             db = gestion_bdd.get_db()
-            cur = db.execute('select * from item_table')
+            cur = db.execute('select * from lol_item_table')
             results = cur.fetchall()
 
             return render_template("view.html", rows=results, pseudo=pseudo)
@@ -138,7 +173,7 @@ class FlaskUse:
 
                     if identifiant_in_bdd[0] == identifiant:
 
-                        error_message="indentifiant deja dans la bdd"
+                        error_message = "indentifiant deja dans la bdd"
                         return render_template("new_visitor.html", error_message=error_message)
                     else:
                         print("identificiant pas dans la base")
@@ -149,38 +184,13 @@ class FlaskUse:
                         'insert into client_table (client_identifiant, client_password) values (?, ?)'
                         , [identifiant, password])
                     db.commit()
-
+                    session['pseudo'] = identifiant
                     return redirect(url_for('home'))
                 else:
                     error_message = "le mot de passe n'est pas le meme"
                     return render_template("new_visitor.html", error_message=error_message)
 
-        @app.route('/add', methods=['POST', 'GET'])
-        def add():
-            if "pseudo" in session:
-                pseudo = session['pseudo']
-            else:
-                pseudo = ""
-            if request.method == 'GET':
-                return render_template('add.html')
-            else:
-                # Ajouter un nouvel utilisateur via le formulaire de la page
-                name = request.form['name']
-                surname = request.form['surname']
-                level = request.form['level']
-                mail = request.form['mail']
-                adresse = request.form['adresse']
-                print(name, surname, level, mail, adresse)
-
-                db = gestion_bdd.get_db()
-                db.execute(
-                    'insert into etudiant_table (etudiant_name, etudiant_surname, etudiant_level, etudiant_mail, '
-                    'etudiant_adresse) values (?, ?, ?, ?, ?)', [name, surname, level, mail, adresse])
-                db.commit()
-
-                return redirect(url_for('viewresults', name=name, surname=surname, pseudo=pseudo))
-
-        @app.route('/delete', methods=['POST', 'GET'])
+        @app.route('/delete', methods=['POST', 'GET'])  # Access only for admin
         def delete_student():
             if "pseudo" in session:
                 pseudo = session['pseudo']
@@ -205,5 +215,10 @@ class FlaskUse:
                 results = cur.fetchall()
 
                 return render_template("delete.html", rows=results, pseudo=pseudo)
+
+        @app.route('/disconnect')  # Access only for admin
+        def disconnect():
+            session.pop("pseudo", None)
+            return redirect(url_for('home'))
 
         app.run()

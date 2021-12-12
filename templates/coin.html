@@ -11,8 +11,8 @@
         <ul>
             <li><a methods="POST" href="{{ url_for('home') }}">Shop</a></li>
             <li><a methods="POST" href="{{ url_for('get_pseudo') }}">{{connection}}</a></li>
-            <li><a href="#">Panier</a></li>
-            <li><a href="/coin">Pièces d'or</a></li>
+            <li><a methods="GET" href="{{ url_for('panier') }}">Panier ({{panier_len}})</a></li>
+            <li><a methods="GET" href="/coin">Pièce d'or{{gold}}</a></li>
         </ul>
     </nav>
 <h1> Si vous voulez des piece d'or taper votre code secret :</h1>
@@ -24,5 +24,7 @@
     <input type="submit" value="Valider mon code secret">
     <br/><br><br/><br>
     </form>
+
+<h2> {{validation_code_message}} </h2>
 </body>
 </html>

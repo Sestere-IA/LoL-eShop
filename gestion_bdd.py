@@ -56,9 +56,8 @@ def put_csv_in_sql():  # Création de la db ainsi que de la table pour vendre ;D
         with open('jupyter_notebook/item_with_img.csv', 'r') as fin:  # `with` statement available in 2.5+
             # csv.DictReader uses first line in file for column headings by default
             dr = csv.DictReader(fin)  # comma is default delimiter
-            to_db = [(i['item_id'], i['name'], i['explain'], i['buy_price'], i['sell_price'], i['tag'], i['path']) for i
-                     in
-                     dr]
+            to_db = [(i['item_id'], i['name'], i['explain'], i['buy_price'], i['sell_price'], i['tag'], i['path'])
+                     for i in dr]
 
         cur.executemany(
             "INSERT INTO item_table "
@@ -101,6 +100,36 @@ def check_identifiant_exist():
     cur = con.cursor()
     cur.execute("select client_identifiant from client_table")
     return cur.fetchall()
+
+
+def check_identififiant_and_password_and_get_gold():
+    con = sqlite3.connect("database/lol_e_shop.db")
+    cur = con.cursor()
+    cur.execute("select client_identifiant, client_password, client_money from client_table")
+    return cur.fetchall()
+
+
+def check_gold_in_the_pocket():
+    con = sqlite3.connect("database/lol_e_shop.db")
+    cur = con.cursor()
+    cur.execute("select client_identifiant, client_password from client_table")
+    return cur.fetchall()
+
+
+def add_gold_in_the_pocket(identifiant):
+    con = sqlite3.connect("database/lol_e_shop.db")
+    cur = con.cursor()
+    cur.execute("update client_table set client_money=client_money + ? where client_identifiant=?",
+                (10000, identifiant))
+    con.commit()
+    con.close()
+
+
+def get_id_of_item_to_panier(code):
+    con = sqlite3.connect("database/lol_e_shop.db")
+    cur = con.cursor()
+    cur.execute("select * from item_table where item_id=?", [code])
+    return cur.fetchone()
 
 
 see_bdd()
