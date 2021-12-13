@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Ajouter un item dans le shop</h1>
+
+ <form method="POST" action="/add_item_admin">
+     <td> ID_Item : </td>
+     <input type="text" name="id">
+           <br><br>
+     <td> Name : </td>
+     <input type="text" name="name">
+      <br><br>
+     <td> Explain : </td>
+     <input type="text" name="explain">
+      <br><br>
+     <td> Price : </td>
+     <input type="number" name="item_price">
+      <br><br>
+     <td> Sell price : </td>
+     <input type="number" name="item_sell_price">
+      <br><br>
+     <td> Tag : </td>
+     <input type="text" name="tag">
+      <br><br>
+     <td> Image src : </td>
+     <input type="text" name="image">
+      <br><br>
+     <input type="submit" value="Ajouter dans le shop">
+  </form>
+ <br><br>
+<a href="/home">Retour au Shop</a>
+</body>
+</html>

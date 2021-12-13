@@ -48,12 +48,10 @@ class FlaskUse:
                     del session['in_panier_id'][i]
                     session['panier_len'] -= 1
 
-            print(session['in_panier_id'])
             return redirect(url_for('panier'))
 
         @app.route('/panier', methods=['GET', 'POST'])
         def panier():
-            print(session['in_panier_id'])
             panier_len, in_panier, gold, total_price = all_info_for_navi_bar()
             connection = "Connection"
             if request.method == "GET":
@@ -99,58 +97,120 @@ class FlaskUse:
                     connection = pseudo
                     if pseudo == "admin":
                         admin_suppresion_item = "Supprimer de la liste de vendre"
-                        href1_message = "Ajouter un nouvel item"
+                        add_for_admin = "Ajouter un nouvel item"
                     else:
                         admin_suppresion_item = ""
-                        href1_message = ""
+                        add_for_admin = ""
 
                     identifier_vous = ""
                 else:
                     identifier_vous = "Identifiez-vous"
                     pseudo = ""
-                    href1_message = ""
+                    add_for_admin = ""
                     connection = "Connection"
                     admin_suppresion_item = ""
                 return render_template("home.html",
                                        identifier_vous=identifier_vous,
-                                       pseudo=pseudo, href1_message=href1_message,
+                                       pseudo=pseudo, add_for_admin=add_for_admin,
                                        connection=connection, results=results,
                                        admin_suppr_item=admin_suppresion_item,
                                        gold=gold, panier_len=panier_len)
 
+        @app.route('/del_item_bdd', methods=['GET', 'POST'])
+        def del_item_bdd_n_shop():
+            _id = request.form['code']
+            gestion_bdd.del_item_in_bdd(_id)
+            print("suppression de l'id {} dans la bdd".format(_id))
+            return redirect(url_for('home'))
+
+        @app.route('/add_item_admin', methods=['GET', 'POST'])
+        def add_item_admin():
+            if request.method == "GET":
+                return render_template("add_item.html")
+            else:
+                item_id = request.form["id"]
+                item_name = request.form["name"]
+                item_explain = request.form["explain"]
+                item_price = request.form["item_price"]
+                item_sell_price = request.form["item_sell_price"]
+                item_tag = request.form["tag"]
+                item_image = request.form["image"]
+
+                values_in_db = [item_id,
+                                item_name,
+                                item_explain,
+                                item_price,
+                                item_sell_price,
+                                item_tag,
+                                item_image]
+
+                gestion_bdd.add_item_in_bdd_admin(values_in_db)
+                return redirect(url_for('home'))
+
+        @app.route('/change_admin_status', methods=['GET', 'POST'])
+        def change_admin_status():
+            if "pseudo" in session:
+                pseudo = session['pseudo']
+                if pseudo == "admin":
+                    _id = request.form['code']
+                    if session['current_ID'] == int(_id):
+                        print("Impossible de modifier son propre status")
+                    else:
+                        gestion_bdd.change_admin_status_in_bdd(_id)
+                        print("changement de status de l'id {} client dans la bdd".format(_id))
+                    return redirect(url_for('get_pseudo'))
+
         @app.route('/pseudo', methods=['GET', 'POST'])
         def get_pseudo():
             panier_len, in_panier, gold, total_price = all_info_for_navi_bar()
+            result = ""
+            table_hide = "hidden"
             if request.method == "GET":
                 if "pseudo" in session:
                     pseudo = session["pseudo"]
+                    if pseudo == "admin":
+                        result = gestion_bdd.see_bdd_client()
+                        table_hide = ''
                     connection = pseudo
+
+                    print("result: {}".format(result))
                     return render_template("setting_acoount.html", connection=connection, gold=gold,
-                                           panier_len=panier_len)
+                                           panier_len=panier_len, result=result, table_hide=table_hide)
 
                 else:
                     return render_template("page_get_pseudo.html",
                                            msg_get_speudo="Connection", connection="Connection",
                                            panier_len=panier_len, gold=gold)
             else:
-                identifiant = request.form['identifiant']
-                password = request.form['mot_de_passe']
-                for identifiant_and_password_in_bdd in gestion_bdd.check_identififiant_and_password_and_get_gold():
-                    if identifiant == identifiant_and_password_in_bdd[0] \
-                            and password == identifiant_and_password_in_bdd[1]:
-                        print("Client dans la bdd autorasation de connection")
-                        session['pseudo'] = identifiant
-                        gold_in_the_pocket = identifiant_and_password_in_bdd[2]
-                        session['gold'] = gold_in_the_pocket
-                        return redirect(url_for('home'))
-                    else:
-                        pass
-                print('Client pas dans la bdd, pas passer')
-                return render_template("page_get_pseudo.html",
-                                       msg_get_speudo="Connection",
-                                       connection="Connection",
-                                       error_message="Information incorrect",
-                                       gold=gold)
+                if "pseudo" in session:
+                    pseudo = session['pseudo']
+                    if pseudo == "admin":
+                        _id = request.form['code']
+                        gestion_bdd.del_client_in_bdd(_id)
+                        print("suppression de l'id {} client dans la bdd".format(_id))
+                        return redirect(url_for('get_pseudo'))
+                else:
+
+                    identifiant = request.form['identifiant']
+                    password = request.form['mot_de_passe']
+                    for identifiant_and_password_in_bdd in gestion_bdd.check_identififiant_and_password_and_get_gold():
+                        if identifiant == identifiant_and_password_in_bdd[0] \
+                                and password == identifiant_and_password_in_bdd[1]:
+                            print("Client dans la bdd autorasation de connection")
+                            session['pseudo'] = identifiant
+
+                            session['current_ID'] = gestion_bdd.check_id_with_identifiant(identifiant)
+                            gold_in_the_pocket = identifiant_and_password_in_bdd[2]
+                            session['gold'] = gold_in_the_pocket
+                            return redirect(url_for('home'))
+                        else:
+                            pass
+                    print('Client pas dans la bdd, pas passer')
+                    return render_template("page_get_pseudo.html",
+                                           msg_get_speudo="Connection",
+                                           connection="Connection",
+                                           error_message="Information incorrect",
+                                           gold=gold)
 
         @app.route('/coin', methods=['POST', 'GET'])
         def coin():
@@ -177,18 +237,6 @@ class FlaskUse:
                                        connection=connection,
                                        validation_code_message=validation_code_message,
                                        panier_len=panier_len)
-
-        @app.route('/display', methods=['POST', 'GET'])
-        def viewresults():
-            if "pseudo" in session:
-                pseudo = session['pseudo']
-            else:
-                pseudo = ""
-            db = gestion_bdd.get_db()
-            cur = db.execute('select * from lol_item_table')
-            results = cur.fetchall()
-
-            return render_template("view.html", rows=results, pseudo=pseudo)
 
         @app.route('/newpseudo', methods=['GET', 'POST'])
         def get_new_pseudo():

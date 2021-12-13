@@ -77,15 +77,25 @@ def put_admin_on_bdd():
     cur = con.cursor()
     cur.execute("INSERT INTO client_table "
                 "(client_identifiant, client_password, "
-                "client_money, client_is_admin) VALUES (?, ?, ?, ?)", ["admin", "admin", 10000, True])
+                "client_money, client_is_admin) VALUES (?, ?, ?, ?)",
+                ["admin", "admin", 10000, True])
     con.commit()
     con.close()
 
 
-def see_bdd():
+def see_bdd_client():
     con = sqlite3.connect("database/lol_e_shop.db")
     cur = con.cursor()
     cur.execute("select * from client_table")
+    result = cur.fetchall()
+    #print(result)
+    return result
+
+
+def see_bdd_item():
+    con = sqlite3.connect("database/lol_e_shop.db")
+    cur = con.cursor()
+    cur.execute("select * from item_table")
     print(cur.fetchall())
 
 
@@ -107,6 +117,13 @@ def check_identififiant_and_password_and_get_gold():
     cur = con.cursor()
     cur.execute("select client_identifiant, client_password, client_money from client_table")
     return cur.fetchall()
+
+
+def check_id_with_identifiant(identifiant):
+    con = sqlite3.connect("database/lol_e_shop.db")
+    cur = con.cursor()
+    cur.execute("select client_ID from client_table where client_identifiant=?", [identifiant])
+    return cur.fetchone()[0]
 
 
 def check_gold_in_the_pocket():
@@ -140,4 +157,48 @@ def validation_cart_del_money_to_bdd(identifiant, validation_cart):
     con.commit()
     con.close()
 
-see_bdd()
+
+def del_item_in_bdd(id_to_del):
+    con = sqlite3.connect("database/lol_e_shop.db")
+    cur = con.cursor()
+    cur.execute("delete from item_table where item_id=?", [id_to_del])
+    con.commit()
+    con.close()
+
+
+def del_client_in_bdd(id_to_del):
+    con = sqlite3.connect("database/lol_e_shop.db")
+    cur = con.cursor()
+    cur.execute("select client_is_admin from client_table where client_ID=?", [id_to_del])
+    if int(cur.fetchone()[0]):  # if is admin cant del
+        print("Impossible de supprimer un admin")
+    else:
+        cur.execute("delete from client_table where client_ID=?", [id_to_del])
+        con.commit()
+        con.close()
+
+
+def change_admin_status_in_bdd(id_to_change):
+    con = sqlite3.connect("database/lol_e_shop.db")
+    cur = con.cursor()
+    cur.execute("select client_is_admin from client_table where client_ID=?", [id_to_change])
+    if int(cur.fetchone()[0]):
+        changement = False
+    else:
+        changement = True
+    cur.execute("update client_table set client_is_admin=? where client_ID=?",
+                [changement, id_to_change])
+    con.commit()
+    con.close()
+
+
+def add_item_in_bdd_admin(values_to_add):
+    con = sqlite3.connect("database/lol_e_shop.db")
+    cur = con.cursor()
+    cur.execute("INSERT INTO item_table "
+                "(item_id, item_name, item_explain,"
+                " item_buy_price, item_sell_price, item_tag, "
+                "item_img_path)"
+                " VALUES (?, ?, ?, ?, ?, ?, ?);", values_to_add)
+    con.commit()
+    con.close()

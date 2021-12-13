@@ -16,7 +16,43 @@
         </ul>
     </nav>
 
-<h1> Setting !</h1>
+<h1> Setting :</h1>
+
+
+    <table style="visibility:{{table_hide}}" border=2>
+ <thead>
+ <td>ID</td>
+ <td>Name</td>
+ <td>Password</td>
+  <td>Gold</td>
+  <td>Is Admin</td>
+  <td>Delete</td>
+ <td>Change admin status</td>
+  </thead>
+
+ {% for row in result %}
+ <tr>
+ <td>{{row[0]}}</td>
+ <td>{{row[1]}}</td>
+ <td>{{row[2]}}</td>
+      <td>{{row[3]}}</td>
+      <td>{{row[4]}}</td>
+              <form method="POST" action="{{url_for('get_pseudo')}}">
+<input type="hidden" name="code" value={{row[0]}}>
+     <td><input type="submit" value=Supprimer></td>
+                  </form>
+                   <form method="POST" action="{{url_for('change_admin_status')}}">
+<input type="hidden" name="code" value={{row[0]}}>
+     <td><input type="submit" value=Change></td>
+                  </form>
+
+
+
+ {% endfor %}
+ </table>
+<br><br>
+
+
 <a methods="GET" href="{{ url_for('disconnect') }}">Se déconnecter</a>
 
 
