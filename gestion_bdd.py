@@ -132,4 +132,12 @@ def get_id_of_item_to_panier(code):
     return cur.fetchone()
 
 
+def validation_cart_del_money_to_bdd(identifiant, validation_cart):
+    con = sqlite3.connect("database/lol_e_shop.db")
+    cur = con.cursor()
+    cur.execute("update client_table set client_money=client_money - ? where client_identifiant=?",
+                (validation_cart, identifiant))
+    con.commit()
+    con.close()
+
 see_bdd()

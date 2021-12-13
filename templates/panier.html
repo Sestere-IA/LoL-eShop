@@ -23,10 +23,32 @@
 
  </div>
 
-<h5> Vous avez {{panier_len}} item dans votre panier</h5>
-<h5> Vous avez l'item avec l'id {{item_id_in_cart}} dans votre panier</h5>
+<div class='div_table'>
+ {% for row in results %}
+ <tr>
+  <img src={{row[6]}}>
+     <td> Name : </td>
+ <td>{{row[1]}}</td>
+     <td> Price : </td>
+ <td>{{row[3]}}</td>
+     <form method="POST" action="{{url_for('del_elem_in_cart')}}">
+     <input type="submit" value="Supprimer du panier">
+         <input type="hidden" name="code" value={{row[0]}}>
+         </form>
 
- <a href="/clear_panier">Remove all</a>
+
+
+    <br><br>
+{% endfor %}
+</div>
+
+<h5> Vous avez {{panier_len}} item dans votre panier</h5>
+
+ <a href="/clear_panier">Vider tout mon panier</a>
+<br><br>
+    Total : {{total_price}}
+    <br><br>
+ <a href="/congrat">Valider mon Panier</a>
 
 </body>
 </html>
