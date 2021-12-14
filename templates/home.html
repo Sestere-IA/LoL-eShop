@@ -29,22 +29,22 @@
 <div class='div_table'>
  {% for row in results %}
  <tr>
-  <img src={{row["item_img_path"]}}>
+  <img src={{row[6]}}>
      <td> Name : </td>
- <td>{{row["item_name"]}}</td>
+ <td>{{row[1]}}</td>
      <td> Describe : </td>
- <td>{{row["item_explain"]}}</td>
+ <td>{{row[2]}}</td>
      <td> Price : </td>
- <td>{{row["item_buy_price"]}}</td>
+ <td>{{row[3]}}</td>
 <td> Tag : </td>
- <td>{{row["item_tag"]}}</td>
+ <td>{{row[5]}}</td>
      <form method="POST" action="/panier">
      <input type="submit" value="Ajouter au Panier">
-         <input type="hidden" name="code" value={{row["item_ID"]}}>
+         <input type="hidden" name="code" value={{row[0]}}>
          </form>
 
      <form method="POST" action="{{url_for('del_item_bdd_n_shop')}}"><input type="submit" value={{admin_suppr_item}}>
-              <input type="hidden" name="code" value={{row["item_ID"]}}>
+              <input type="hidden" name="code" value={{row[0]}}>
      </form>
 
     <br><br>
