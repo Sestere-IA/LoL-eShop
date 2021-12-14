@@ -128,10 +128,15 @@ class WebSite:
                     pseudo = session['pseudo']
                     panier_len, in_panier, gold, total_price = \
                         all_info_for_navi_bar()
-                    bdd_settings.validation_cart_del_money_to_bdd(pseudo,
-                                                                  total_price)
-                    session["gold"] -= total_price
-                    return render_template("congrat_validation.html")
+                    if session['gold'] - total_price < 0:
+                        print("Vous n'avez pas assez d'argent"
+                              " sur votre compte")
+                        return redirect(url_for('panier'))
+                    else:
+                        bdd_settings.validation_cart_del_money_to_bdd(pseudo,
+                                                                      total_price)
+                        session["gold"] -= total_price
+                        return render_template("congrat_validation.html")
             else:
                 return render_template(
                     "connect_to_account_to_validate_cart.html")
@@ -340,7 +345,7 @@ class WebSite:
                 validation_code_message = "Code incorrect," \
                                           " tu n'a pas le droit d'avoir " \
                                           "d'argent en plus"
-                if secret_code == "monsupercodesecret":
+                if secret_code == "motherload":
                     print("code valider")
                     validation_code_message = "BRAVO," \
                                               " c'est le bon code !" \
