@@ -2,7 +2,7 @@
 Gestion des pages, des chemins et des interraction de notre site web
 
 """
-
+import flask
 from flask import Flask, request, url_for, redirect, render_template, session
 
 import bdd_settings
