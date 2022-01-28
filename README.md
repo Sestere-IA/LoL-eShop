@@ -19,6 +19,24 @@ Plus de NFT sera généré, plus l'achat de la prochaine image sera chère. Le p
 - [@Sestere-IA](https://github.com/Sestere-IA)
 - [@Anassinho78](https://github.com/Anassinho78)
 
+## Current Functionality
+###Client
+- Mise en panier d'articles
+- Creation d'un compte
+- Connection à son compte
+- Gestion de son panier
+- Achat de pièces d'or (monaie du site)
+- Validation du panier en fonction de son nombre de pièce d'or
+
+###Admin
+- Suppression d'article
+- Ajout d'article
+- Gestion des comptes utilisateurs
+
+###ToKnow
+- Secret code to get coin : "motherload"
+- Connection to Admin account : Login=admin / Mdp=admin
+- Connection to pre-existing client : Login=client1 / Mdp=client1
 
 ## Contributing
 

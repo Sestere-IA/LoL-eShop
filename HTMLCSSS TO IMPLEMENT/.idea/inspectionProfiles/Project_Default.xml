@@ -1,0 +1,79 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyArgumentEqualDefaultInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyAugmentAssignmentInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyClassicStyleClassInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyCompatibilityInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ourVersions">
+        <value>
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="3.9" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyMandatoryEncodingInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyMissingOrEmptyDocstringInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyMissingTypeHintsInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="pypyodbc" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E501" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N806" />
+          <option value="N801" />
+          <option value="N802" />
+          <option value="N803" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="docx.shared" />
+          <option value="tkinter.ttk.progressbar" />
+          <option value="list.replace" />
+          <option value="main.set_layout.winfo_x" />
+          <option value="main.set_layout.winfo_y" />
+          <option value="main.__init__.a" />
+          <option value="FenetreTrier.getinformation.societe_qrcode" />
+          <option value="FenetreTrier.popup_for_renseignemment_formation.getinformation" />
+          <option value="FenetreTrier.popup_for_renseignemment_formation.var_to_get_society" />
+          <option value="FenetreTrier.getinformation.client" />
+          <option value="FenetreTrier.getinformation.client_qrcode" />
+          <option value="FenetreTrier.popup_for_renseignemment_formation.var_to_get_client" />
+          <option value="FenetreTrier.getinformation.adress_qrcode" />
+          <option value="FenetreTrier.popup_for_renseignemment_formation.var_to_get_adresse" />
+          <option value="FenetreTrier.getinformation.duree_qrcode" />
+          <option value="FenetreTrier.popup_for_renseignemment_formation.var_to_get_duree" />
+          <option value="FenetreTrier.getinformation.Surname_qrcode" />
+          <option value="FenetreTrier.getinformation.Name_qrcode" />
+          <option value="FenetreTrier.popup_for_renseignemment_formation.var_to_get_Name" />
+          <option value="FenetreTrier.popup_for_renseignemment_formation.var_to_get_surname" />
+          <option value="FenetreCompteRendu.popup_for_renseignemment_formation.var_to_get_adresse" />
+          <option value="FenetreCompteRendu.getinformation.Date_qrcode" />
+          <option value="FenetreCompteRendu.getinformation.duree_qrcode" />
+          <option value="FenetreCompteRendu.getinformation.adress_qrcode" />
+          <option value="FenetreCompteRendu.popup_for_renseignemment_formation.var_to_get_duree" />
+          <option value="FenetreCompteRendu.popup_for_renseignemment_formation.var_to_get_Date" />
+          <option value="selenium.webdriver.remote.webelement.WebElement.__getitem__" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
