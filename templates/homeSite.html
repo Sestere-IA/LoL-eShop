@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>LoL eShop</title>
+	    <link rel ="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='homeSite.css') }}">
+</head>
+<body>
+	<nav>
+		<div class="logo"> LOL eShop</div>
+		<label class="Menu-b"></label>
+		<ul>
+            <li><a methods="POST" href="{{ url_for('home') }}">Shop</a></li>
+            <li><a methods="POST" href="{{ url_for('get_pseudo') }}">{{connection}}</a></li>
+            <li><a methods="GET" href="{{ url_for('panier') }}">Panier ({{panier_len}})</a></li>
+            <li><a methods="GET" href="/coin">Pièce d'or{{gold}}</a></li>
+		</ul>
+	</nav>
+
+
+	<div class="site-container">
+		<div class="article-container">
+			{% for row, img in results %}
+			<article class="article-card">
+				<figure class="article-image">
+					<img src="{{ url_for('static', filename='images/'+img) }}" alt="image du jeux">
+				</figure>
+				<div class="articl-content">
+					<h1 class="card-category">{{row[1]}}</h1>
+					<p class="card-excerpt">{{row[2]}}</p>
+					<h3 class="card-title"> prix :{{row[3]}}</h3>
+					<h3 class="card-tag"> Tag :{{row[6]}}</h3>
+				 	<li class="ajouter">
+						<form method="POST" action="/panier">
+     						<input class="btn_add" type="submit" value="Ajouter au Panier">
+         					<input type="hidden" name="code" value={{row[0]}}>
+         				</form>
+
+     					<form method="POST" action="{{url_for('del_item_bdd_n_shop')}}"><input class="hidden_for_client" style="visibility: {{visibility_admin}}" type="submit" value={{admin_suppr_item}}>
+              				<input type="hidden" name="code" value={{row[0]}}>
+     					</form>
+					</li>
+				</div>
+			</article>
+			{% endfor %}
+
+		</div>
+	</div>
+<a methods="GET" href="/add_item_admin">{{add_for_admin}}</a>
+
+</body>
+</html>

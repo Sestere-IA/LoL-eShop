@@ -26,7 +26,7 @@ def create_table_lol_items():
     con = sqlite3.connect("database/lol_e_shop.db")
     cursor = con.cursor()
 
-    sql_file = open("requete_sql/create_table_lol_item.sql")
+    sql_file = open("requete_sql/Not_finaly_use/create_table_lol_item.sql")
     sql_as_string = sql_file.read()
 
     cursor.executescript(sql_as_string)
@@ -69,7 +69,7 @@ def create_item_table_and_put_csv_in_sql():
             "item_tag, "
             "item_img_path);")  # Use your column
 
-        with open('jupyter_notebook/item_with_img.csv', 'r') as fin:
+        with open('jupyter_notebook/item_short.csv', 'r') as fin:
             # `with` statement available in 2.5+
             # csv.DictReader uses first line in file for column
             # headings by default
@@ -377,7 +377,7 @@ def list_all_table():
     return cur.fetchall()
 
 
-def drop_specifi_table():
+def drop_specific_table():
     """
     Supprimer une table dans la base de données
     """

@@ -38,26 +38,14 @@ nav ul li a{
 
 }
 nav ul li a:hover{
-	color: orange;
-	background: #fff;
+	color: #191919;
+	background: #orange;
 }
 nav ul li a.active{
 	color: orange;
 	background: #fff;
 }
 
-@media (max-width: 940px) {
-nav ul{
-	position: fixed;
-	top: 80px;
-	left: 0;
-	background: #fff;
-
-	height: 100vh;
-	width: 100%;
-	display: block;
-	text-align: center;
-}
 nav ul li{
 	margin: 40px 0;
 }
@@ -93,21 +81,15 @@ h4{
 	margin: 20px auto;
 }
 p{
-	color: #7c7c7c;
-	padding: 0px 40px;
+	color: #7c7c7c;;
 }
 .events .ctn{
 	margin-top: 30px;
 }
  img{
- 	grid-area: image;
 	width: 100px;
-	margin-top: 5px;
+	margin-top: 3px;
 	max-width: 100%;
-	height: auto;
-	border-radius: 20px 20px 0 0;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
 	background-size: cover;
 }
 body, html{
@@ -139,12 +121,10 @@ body {
 	margin: 0;
 	padding: 0;
 	overflow-x: hidden;
+	display: flex;
+    justify-content: center;
 }
-.article-image img{
-	max-width: 100%;
-	height: auto;
-	border-radius: 20px 20px 0 0;
-}
+
 .article-card{
 	background: white;
 	border-radius: 20px;
@@ -159,6 +139,8 @@ body {
 }
 .article-content{
 	padding: 2rem;
+		display: flex;
+    justify-content: center;
 }
 .article-content .card-category{
 	font-size: 0.875rem;
@@ -166,6 +148,7 @@ body {
 	letter-spacing: 0.1em;
 	display: block;
 	text-decoration: none;
+
 }
 .article-content .card-title{
 	margin: 1rem;
@@ -177,23 +160,22 @@ body {
 	color: #6b82a7;
 	margin: 0;
 }
-.articl-content .ajouter a{ 
+.articl-content .ajouter .btn_add{
 	background-color:#2AFEF7;
 	border: none;
-	color: brown;
+	color: #191919;
 	list-style: none;
 	text-decoration: none;
 	font-size: 18px;
+	font-color : #191919;
 	letter-spacing: 1px;
 	padding: 8px 10px;
 	display: inline-block;
 	border-radius: 2em;
 	cursor: pointer;
+	border: 1px solid #191919;
 }
-.articl-content .a hover{
-	color: cyan;
-	background: none;
-}
+
 .articl-content li{
 	list-style: none;
 }

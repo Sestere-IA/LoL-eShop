@@ -2,10 +2,13 @@
 Gestion des pages, des chemins et des interraction de notre site web
 
 """
+import re
+
 import flask
 from flask import Flask, request, url_for, redirect, render_template, session
 
 import bdd_settings
+import os
 
 
 def all_info_for_navi_bar():
@@ -32,6 +35,10 @@ def all_info_for_navi_bar():
         gold = " : " + str(session['gold'])
         total_price = session["total_price_panier"]
         return panier_len, in_panier, gold, total_price
+
+
+def num_sort(test_string):
+    return list(map(int, re.findall(r'\d+', test_string)))[0]
 
 
 class WebSite:
@@ -152,6 +159,9 @@ class WebSite:
             panier_len, in_panier, gold, total_price = \
                 all_info_for_navi_bar()
             results = bdd_settings.see_bdd_item()
+            images = os.listdir("static/images/")
+            images.sort(key=num_sort)
+            final_results = zip(results, images)
             if request.method == "GET":
                 if 'pseudo' in session:
                     pseudo = session['pseudo']
@@ -160,23 +170,27 @@ class WebSite:
                         admin_suppresion_item = \
                             "Supprimer de la liste de vendre"
                         add_for_admin = "Ajouter un nouvel item"
+                        visibility_admin = "visible"
                     else:
                         admin_suppresion_item = ""
                         add_for_admin = ""
+                        visibility_admin = "hidden"
 
                     identifier_vous = ""
                 else:
                     identifier_vous = "Identifiez-vous"
                     pseudo = ""
                     add_for_admin = ""
+                    visibility_admin = "hidden"
                     connection = "Connection"
                     admin_suppresion_item = ""
-                return render_template("home.html",
+                return render_template("homeSite.html",
                                        identifier_vous=identifier_vous,
                                        pseudo=pseudo,
                                        add_for_admin=add_for_admin,
+                                       visibility_admin=visibility_admin,
                                        connection=connection,
-                                       results=results,
+                                       results=final_results,
                                        admin_suppr_item=admin_suppresion_item,
                                        gold=gold, panier_len=panier_len)
 

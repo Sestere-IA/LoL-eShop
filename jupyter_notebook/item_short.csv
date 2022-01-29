@@ -1,0 +1,13 @@
+item_id,name,explain,buy_price,sell_price,tag,path
+1004,Faerie Charm,Slightly increases Mana Regen,125,88
+1038,B. F. Sword,Greatly increases Attack Damage,1300,910,Damage
+1042,Dagger,Slightly increases Attack Speed,300,210,AttackSpeed
+3001,Abyssal Mask,Nearby enemies take more magic damage,1180,2100
+3004,Manamune,Increases Attack Damage based on maximum Mana,675,1680,Damage
+3035,Last Whisper,Overcomes enemies with high Armor,750,1015
+3067,Kindlegem,Increases Health and Cooldown Reduction,400,560
+3089,Rabadon's Deathcap,Massively increases Ability Power,1100,2520,SpellDamage
+3115,Nashor's Tooth,"Increases Attack Speed, Ability Power, and Cooldown Reduction",1000,2100,AttackSpeed
+3140,Quicksilver Sash,Activate to remove all crowd control debuffs,850,910,Active
+3857,Pauldrons of Whiterock,,400,160,Health
+3916,Oblivion Orb,Increases magic damage,765,1120,Health
