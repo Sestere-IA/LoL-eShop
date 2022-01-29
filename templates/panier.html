@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>Title</title>
         <link rel ="stylesheet" type="text/css"
-          href="{{ url_for('static', filename='main.css') }}">
+          href="{{ url_for('static', filename='panier.css') }}">
 </head>
 <body>
     <nav>
+        <div class="logo"> LOL eShop</div>
+		<label class="Menu-b"></label>
         <ul>
             <li><a methods="POST" href="{{ url_for('home') }}">Shop</a></li>
             <li><a methods="POST" href="{{ url_for('get_pseudo') }}">{{connection}}</a></li>
@@ -16,21 +18,18 @@
         </ul>
     </nav>
 
- <div class=”Cart-Container”></div>
-
-<div class=”Header”>
- <h3 class=”Heading”>Shopping Cart</h3>
-
- </div>
+    <h1>Mon panier</h1>
 
 <div class='div_table'>
  {% for row in results %}
+    <br><br>
  <tr>
-  <img src={{row[6]}}>
      <td> Name : </td>
  <td>{{row[1]}}</td>
+     <br><br>
      <td> Price : </td>
- <td>{{row[3]}}</td>
+ <td>{{row[3]}} Po</td>
+     <br><br>
      <form method="POST" action="{{url_for('del_elem_in_cart')}}">
      <input type="submit" value="Supprimer du panier">
          <input type="hidden" name="code" value={{row[0]}}>
@@ -42,13 +41,13 @@
 {% endfor %}
 </div>
 
-<h5> Vous avez {{panier_len}} item dans votre panier</h5>
+<h2> Vous avez {{panier_len}} item dans votre panier</h2>
 
- <a href="/clear_panier">Vider tout mon panier</a>
+ <a class="vider" href="/clear_panier">Vider tout mon panier</a>
 <br><br>
-    Total : {{total_price}}
+<h2>Total : {{total_price}} </h2>
     <br><br>
- <a href="/congrat">Valider mon Panier</a>
+ <a class="valid "href="/congrat">Valider mon Panier</a>
 
 </body>
 </html>

@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>Setting Accountp</title>
     <link rel ="stylesheet" type="text/css"
-          href="{{ url_for('static', filename='main.css') }}">
+          href="{{ url_for('static', filename='setting_account.css') }}">
 </head>
 <body>
     <nav>
+        <div class="logo"> LOL eShop</div>
+		<label class="Menu-b"></label>
         <ul>
             <li><a methods="POST" href="{{ url_for('home') }}">Shop</a></li>
             <li><a methods="POST" href="{{ url_for('get_pseudo') }}">{{connection}}</a></li>
@@ -19,7 +21,7 @@
 <h1> Setting :</h1>
 
 
-    <table style="visibility:{{table_hide}}" border=2>
+    <table style="visibility:{{table_hide}};color:white;" border=2>
  <thead>
  <td>ID</td>
  <td>Name</td>
@@ -29,6 +31,7 @@
   <td>Delete</td>
  <td>Change admin status</td>
   </thead>
+
 
  {% for row in result %}
  <tr>
@@ -53,7 +56,7 @@
 <br><br>
 
 
-<a methods="GET" href="{{ url_for('disconnect') }}">Se déconnecter</a>
+<a class="disconect" methods="GET" href="{{ url_for('disconnect') }}">Se déconnecter</a>
 
 
 </body>

@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Item LoL Shop</title>
     <link rel ="stylesheet" type="text/css"
-          href="{{ url_for('static', filename='main.css') }}">
+          href="{{ url_for('static', filename='coin.css') }}">
 </head>
 <body>
     <nav>
+        <div class="logo"> LOL eShop</div>
+		<label class="Menu-b"></label>
         <ul>
             <li><a methods="POST" href="{{ url_for('home') }}">Shop</a></li>
             <li><a methods="POST" href="{{ url_for('get_pseudo') }}">{{connection}}</a></li>
@@ -21,7 +24,7 @@
 <form method="POST"
     action="/coin">
     <input type="text" name="coin">
-    <input type="submit" value="Valider mon code secret">
+    <input class="valid_btn" type="submit" value="Valider mon code secret">
     <br/><br><br/><br>
     </form>
 

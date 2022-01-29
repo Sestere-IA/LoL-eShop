@@ -1,0 +1,23 @@
+body{
+	line-height: 1.0;
+	justify-content: center;
+	background-color:#191919;
+}
+h1, h2{
+color:white;}
+.create, .connect{
+    background-color:#2AFEF7;
+	border: none;
+	color: #191919;
+	list-style: none;
+	text-decoration: none;
+	font-size: 18px;
+	font-color : #191919;
+	letter-spacing: 1px;
+	padding: 8px 10px;
+	display: inline-block;
+	border-radius: 2em;
+	cursor: pointer;
+	border: 1px solid #191919;
+	margin-top: 20px;
+}

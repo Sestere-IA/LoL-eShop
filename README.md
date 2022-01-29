@@ -1,18 +1,18 @@
 
 # LoL eShop
 
-Objectif : Inspiration du jeux "League of Legend"
-Nous voulons vendre toutes les "images composants" rectangulaire du jeux, par exemple : Les items équipable,
-les personnages, les summoners etc... Une fois l'image acheté, elle sera modifier de façon aléatoire avec un algorithme de ML.
-Cette algorithme fusionnera l'image avec un lien de chaine Youtube ou Twitch. Un algorithme de Web Scrapping
-s'occupera de sortir les images principals de la chaîne afin de créer une image unique. Les images peuvent-etre acheté autant de fois que l'on le veux,
-mais chaque image ne peux être associété qu'a une seul URL. Une fois l'image généré, elle est transformer en NFT et donné à l'acheteur.
+Objectif : Inspiration du jeux "League of Legend".
+Nous voulons vendre toutes les images composantes du jeux. Par exemple : Les items équipable,
+les personnages, les summoners etc... Une fois l'image achetée, elle sera modifiée de façon aléatoire avec un algorithme de ML.
+Cet algorithme fusionnera l'image avec un lien de chaine Youtube ou Twitch. Du Web Scrapping
+d'extraire les images composantes de la chaîne. Les images peuvent-être achetée autant de fois que désirées,
+mais chaque images ne peut être associé qu'a une seul URL. Une fois l'image générée, elle est transformée en NFT et donnée à l'acheteur.
 
 
 ## Appendix
 
 L'image n'a de valeur que purement artistique. Le prix d'achat d'une image sera graduel en fonction du nombre de NFT déja généré.
-Plus de NFT sera généré, plus l'achat de la prochaine image sera chère. Le prix sera actualisé chaque heures ronde
+Plus de NFT sera généré, plus l'achat de la prochaine image sera chère sur le site. Le prix sera actualisé chaque heures ronde
 (finissant par 00) au fuseau horaire UTC +01:00 Bruxelles, Copenhague, Madrid, Paris).
 ## Authors
 
@@ -59,7 +59,7 @@ The result going to be enable in http://127.0.0.1:5000/
 
 #### Quel est le but du projet ?
 
-Nous voulant donné objet unique aux personnes aimant jeux "League of League", et ayant grandis dans l'univers de Youtube/Twitch.
+Nous voulont donner un objet unique aux personnes aimant jeux "League of League", et ayant grandis dans l'univers de Youtube/Twitch.
 Chaque Streamer/Vidéaste du Jeux à son histoire propre, et à un moins une référence par rapport à un composant du jeux.
 Exemple : Streamer - Aldériate / Composant du jeux - Tryndamere.
 Un acheteur peut donc associété l'image du composant Tryndamere à l'URL de la chaine Twitch du Streamer afin de créer un NFT unique.

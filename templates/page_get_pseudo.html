@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>Connection</title>
     <link rel ="stylesheet" type="text/css"
-          href="{{ url_for('static', filename='main.css') }}">
+          href="{{ url_for('static', filename='page_get_pseudo.css') }}">
 </head>
 <body>
     <nav>
+        <div class="logo"> LOL eShop</div>
+		<label class="Menu-b"></label>
         <ul>
             <li><a methods="POST" href="{{ url_for('home') }}">Shop</a></li>
             <li><a methods="POST" href="{{ url_for('get_pseudo') }}">{{connection}}</a></li>
@@ -17,17 +19,15 @@
     </nav>
 
     <h1> {{msg_get_speudo}}</h1>
-    <br/><br>
-
 
 <form method="POST"
     action="/pseudo">
-    <h3> Identifiant : </h3>
-    <input type="text" name="identifiant">
-    <br/><br>
-    <h3> Mot de passe : </h3>
-    <input type="password" name="mot_de_passe">
-    <input type="submit" value="Se connecter">
+    <div class="inputs">
+    <input type="text" name="identifiant" placeholder="Identifiant">
+        <br/><br>
+    <input type="password" name="mot_de_passe" placeholder="Mot de passe">
+    </div>
+    <input class="connexion" type="submit" value="Se connecter">
     <br/><br><br/><br>
     </form>
 
@@ -35,7 +35,7 @@
     action="/newpseudo">
     <h2> Nouveau Client ?</h2>
     <br/><br>
-    <input type="submit" value="Créer un compte">
+    <input class="connexion" type="submit" value="Créer un compte">
 </form>
 
 <h4>{{ error_message }}</h4>

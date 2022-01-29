@@ -58,7 +58,7 @@ nav ul li a.active{
 	color: cyan;
 	background: none;
 }
-}
+
 </-- article--/>
 .row{
 	display: flex;
@@ -154,6 +154,7 @@ body {
 	margin: 1rem;
 	color: #22447;
 }
+
 .article-content .card-excerpt{
 	font-size: 1rem;
 	line-height: 1.5rem;

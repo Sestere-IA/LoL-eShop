@@ -4,7 +4,6 @@ Gestion des pages, des chemins et des interraction de notre site web
 """
 import re
 
-import flask
 from flask import Flask, request, url_for, redirect, render_template, session
 
 import bdd_settings
@@ -100,7 +99,7 @@ class WebSite:
             :return:
             """
             panier_len, in_panier, gold, total_price = all_info_for_navi_bar()
-            connection = "Connection"
+            connection = "Connexion"
             if request.method == "GET":
                 if 'pseudo' in session:
                     pseudo = session['pseudo']
@@ -182,7 +181,7 @@ class WebSite:
                     pseudo = ""
                     add_for_admin = ""
                     visibility_admin = "hidden"
-                    connection = "Connection"
+                    connection = "Connexion"
                     admin_suppresion_item = ""
                 return render_template("homeSite.html",
                                        identifier_vous=identifier_vous,
@@ -327,8 +326,8 @@ class WebSite:
                             pass
                     print('Client pas dans la bdd, pas passer')
                     return render_template("page_get_pseudo.html",
-                                           msg_get_speudo="Connection",
-                                           connection="Connection",
+                                           msg_get_speudo="Connexion",
+                                           connection="Connexion",
                                            error_message="Info incorrect",
                                            gold=gold)
 
@@ -351,7 +350,7 @@ class WebSite:
                                            connection=connection,
                                            panier_len=panier_len)
                 else:
-                    return render_template("connect_before_get_coin.html")
+                    return render_template("connect_before_get_coin.html", connection="Connexion")
             else:
                 pseudo = session['pseudo']
                 connection = pseudo

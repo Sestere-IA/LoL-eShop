@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+        <link rel ="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='congrat_validation.css') }}">
 </head>
 <body>
-BRAVO VOUS AVEZ VALIDER VOTRE PANIER
+<h1> BRAVO VOUS AVEZ VALIDER VOTRE PANIER</h1>
 
-<a href="/clear_panier">Retourner au shop</a>
+<a class="returnshop" href="/clear_panier">Retourner au shop</a>
 </body>
 </html>

@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Créer un compte</title>
+    <link rel ="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='new_visitor.css') }}">
 </head>
 <body>
 <form method="POST"
     action="/newpseudo">
-    <h3> Identifiant : </h3>
-    <input type="text" name="identifiant">
-    <br/><br>
-    <h3> Mot de passe : </h3>
-    <input type="password" name="mot_de_passe">
-    <br/><br>
-    <h3> Confirmer mot de passe : </h3>
-    <input type="password" name="mot_de_passe_confirme">
-    <input type="submit" value="Creer un compte">
+    <div class="inputs">
+        <h1> Identifiant : </h1>
+        <input type="text" name="identifiant">
+        <br/><br>
+        <h1> Mot de passe : </h1>
+        <input type="password" name="mot_de_passe">
+        <br/><br>
+        <h1> Confirmer mot de passe : </h1>
+        <input type="password" name="mot_de_passe_confirme">
+        <input class="create"type="submit" value="Creer un compte">
+    </div>
     <br/><br><br/><br>
     </form>
 
@@ -23,7 +27,7 @@
     action="/pseudo">
     <h2> Deja client ?</h2>
     <br/><br>
-    <input type="submit" value="Se connecter">
+    <input class="connect" type="submit" value="Se connecter">
 </form>
 
 <h4> {{ error_message }}</h4>
