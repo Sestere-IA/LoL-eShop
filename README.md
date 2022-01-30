@@ -1,18 +1,18 @@
 
 # LoL eShop
 
-Objectif : Inspiration du jeux "League of Legend".
-Nous voulons vendre toutes les images composantes du jeux. Par exemple : Les items équipable,
+Objectif : Inspiration du jeu "League of Legend".
+Nous voulons vendre toutes les images composantes du jeu. Par exemple : Les items équipables,
 les personnages, les summoners etc... Une fois l'image achetée, elle sera modifiée de façon aléatoire avec un algorithme de ML.
-Cet algorithme fusionnera l'image avec un lien de chaine Youtube ou Twitch. Du Web Scrapping
-d'extraire les images composantes de la chaîne. Les images peuvent-être achetée autant de fois que désirées,
-mais chaque images ne peut être associé qu'a une seul URL. Une fois l'image générée, elle est transformée en NFT et donnée à l'acheteur.
+Cet algorithme fusionnera l'image avec un lien de chaine Youtube ou Twitch. Du Web Scrapping permet
+d'extraire les images composantes de la chaîne. Les images peuvent-être achetées autant de fois que désiré,
+mais chaque image ne peut être associé qu'a une seule URL. Une fois l'image générée, elle est transformée en NFT et donnée à l'acheteur.
 
 
 ## Appendix
 
 L'image n'a de valeur que purement artistique. Le prix d'achat d'une image sera graduel en fonction du nombre de NFT déja généré.
-Plus de NFT sera généré, plus l'achat de la prochaine image sera chère sur le site. Le prix sera actualisé chaque heures ronde
+Plus de NFT sera généré, plus l'achat de la prochaine image sera cher sur le site. Le prix sera actualisé chaque heures ronde
 (finissant par 00) au fuseau horaire UTC +01:00 Bruxelles, Copenhague, Madrid, Paris).
 ## Authors
 
@@ -59,18 +59,18 @@ The result going to be enable in http://127.0.0.1:5000/
 
 #### Quel est le but du projet ?
 
-Nous voulont donner un objet unique aux personnes aimant jeux "League of League", et ayant grandis dans l'univers de Youtube/Twitch.
-Chaque Streamer/Vidéaste du Jeux à son histoire propre, et à un moins une référence par rapport à un composant du jeux.
+Nous voulons donner un objet unique aux personnes aimant le jeux "League of League", et ayant grandis dans l'univers de Youtube/Twitch.
+Chaque Streamer/Vidéaste du Jeu a son histoire propre, et a un moins une référence par rapport à un composant du jeu.
 Exemple : Streamer - Aldériate / Composant du jeux - Tryndamere.
-Un acheteur peut donc associété l'image du composant Tryndamere à l'URL de la chaine Twitch du Streamer afin de créer un NFT unique.
+Un acheteur peut donc associer l'image du composant Tryndamere à l'URL de la chaine Twitch du Streamer afin de créer un NFT unique.
 
 #### Quel moyen de payement est-il prévue ?
 
-Les solutions de payements accepté seront uniquement par crypto-monnaie.
+Les solutions de payements acceptée seront uniquement par crypto-monnaie.
 
 #### D'autres plateforme sont-il prévue ?
 
-Pas pour l'instant, seul le version Web sera développé.
+Pas pour l'instant, seul le version Web sera développée.
 
 #### French to English Translate in Web Site ?
 
@@ -93,20 +93,23 @@ All my skills in https://www.linkedin.com/in/dataandautomation/
 
 
 ## Font
+
 TSGRomulus-Bold
+
 ## Acknowledgements
 
  - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
  - [Anass Mourhiteddine](https://github.com/Anassinho78)
  - [IA School](https://www.intelligence-artificielle-school.com/)
  - Hamidou Toure (helping for html/css)
+
 ## Features
 
 - Light/dark mode toggle
-- Affichage de son image généré avec un système de vote et de "re-trading"
+- Affichage de son image générée avec un système de vote et de "re-trading"
 - Developper l'agorithme ML
 - Devlopper la partie Web Scrapping
-- Transmer en NFT l'image
+- Transformer en NFT l'image
 
 
 ## Feedback
@@ -117,9 +120,9 @@ If you have any feedback, please reach out to us at alexandre.nabyt75@gmail.com
 ## Roadmap
 
 - HTML/CSS Validation
-- Intégrer plus d'image composant du Jeux
+- Intégrer plus d'image composant du Jeu
 - Sytème d'achat avec de la cryptomonais de pièce d'or
-- Récupération d'image à partir de l'url fournis par l'acheteur.
+- Récupération d'image à partir de l'url fourni par l'acheteur
 - Validation de la fusion avec le ML
 - Transformation de l'image en NFT
 - Système de Traiding des NFT sur le site
