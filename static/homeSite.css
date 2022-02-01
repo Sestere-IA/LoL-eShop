@@ -180,3 +180,19 @@ body {
 .articl-content li{
 	list-style: none;
 }
+
+.btn_add_admin{
+	background-color:#2AFEF7;
+	border: none;
+	color: #191919;
+	list-style: none;
+	text-decoration: none;
+	font-size: 18px;
+	font-color : #191919;
+	letter-spacing: 1px;
+	padding: 8px 10px;
+	display: inline-block;
+	border-radius: 2em;
+	cursor: pointer;
+	border: 1px solid #191919;
+}
